@@ -10,7 +10,7 @@ public class MemoryMemberRepository implements MemberRepository{
     private static long sequence = 0L;
 
     @Override
-    public Member memberSave(Member member) {
+    public Member save(Member member) {
         member.setId(++sequence);
         store.put(member.getId(), member);
         return member;
