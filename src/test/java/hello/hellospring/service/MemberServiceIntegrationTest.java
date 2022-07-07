@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,10 +24,11 @@ class MemberServiceIntegrationTest {
 
     @Test
     @DisplayName("회원가입 테스트")
+    @Commit
     void join() {
         //given
         Member member = new Member();
-        member.setName("Spring Fighting!");
+        member.setName("JPA join test!");
 
         //when
         Long saveId = memberService.join(member);
@@ -41,10 +43,10 @@ class MemberServiceIntegrationTest {
     void duplicateJoin() {
         //given
         Member member1 = new Member();
-        member1.setName("hellooo");
+        member1.setName("hellooooo jpa");
 
         Member member2 = new Member();
-        member2.setName("hellooo");
+        member2.setName("hellooooo jpa");
 
         //when
         memberService.join(member1);

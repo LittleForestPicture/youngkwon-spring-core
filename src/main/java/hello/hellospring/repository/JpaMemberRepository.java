@@ -1,7 +1,5 @@
 package hello.hellospring.repository;
-
 import hello.hellospring.domain.Member;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
@@ -14,23 +12,25 @@ public class JpaMemberRepository implements MemberRepository {
         this.em = em;
     }
 
-    @Override
     public Member save(Member member) {
-        return null;
+        em.persist(member);
+        return member;
     }
 
-    @Override
     public Optional<Member> findById(Long id) {
-        return Optional.empty();
+        Member member = em.find(Member.class, id);
+        return Optional.ofNullable(member);
     }
 
-    @Override
-    public Optional<Member> findByName(String name) {
-        return Optional.empty();
-    }
-
-    @Override
     public List<Member> findAll() {
-        return null;
+        return em.createQuery("select m from Member m", Member.class)
+                .getResultList();
+    }
+
+    public Optional<Member> findByName(String name) {
+        List<Member> result = em.createQuery("select m from Member m where m.name = :name", Member.class)
+                .setParameter("name", name)
+                .getResultList();
+        return result.stream().findAny();
     }
 }
