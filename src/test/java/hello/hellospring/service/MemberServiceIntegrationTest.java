@@ -28,7 +28,7 @@ class MemberServiceIntegrationTest {
     void join() {
         //given
         Member member = new Member();
-        member.setName("JPA join test!");
+        member.setName("JPA join test!!");
 
         //when
         Long saveId = memberService.join(member);
@@ -43,10 +43,10 @@ class MemberServiceIntegrationTest {
     void duplicateJoin() {
         //given
         Member member1 = new Member();
-        member1.setName("hellooooo jpa");
+        member1.setName("hellooooo jpa!");
 
         Member member2 = new Member();
-        member2.setName("hellooooo jpa");
+        member2.setName("hellooooo jpa!");
 
         //when
         memberService.join(member1);
